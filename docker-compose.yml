@@ -1,0 +1,17 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - ./data:/data
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      - DATABASE_URL=/data/calm.db
+      - JWT_SECRET=dev-secret-do-not-use-in-production
+      - LISTEN_ADDR=0.0.0.0:3000
